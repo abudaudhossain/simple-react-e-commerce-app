@@ -1,0 +1,9 @@
+.shop{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.product-container{
+    border-right: 1px solid gainsboro;
+    margin: 0 10px 0 20%;
+}

@@ -1,0 +1,28 @@
+.header{
+    text-align: center;
+}
+.header img{
+    width: 25%;
+}
+
+nav{
+    background: black;
+}
+nav ul{
+    list-style-type: none;
+    display: flex;
+}
+nav ul li a {
+    text-decoration: none;
+    line-height: 36px;
+    color: #fff;
+    padding: 5px;
+    display: inline-block;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+nav ul li a:hover{
+    background: lightgray;
+}
