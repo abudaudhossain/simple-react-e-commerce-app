@@ -2,7 +2,7 @@
 const addDb = (productKey) => {
     const exists = getCart("product_cart");
     let shoppingProduct = {}
-    console.log(productKey)
+
     if (!exists) {
         shoppingProduct[productKey] = 1;
     } else {

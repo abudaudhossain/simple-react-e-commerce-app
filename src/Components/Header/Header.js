@@ -12,7 +12,7 @@ const Header = () => {
                     <li><a href="/Order">Order Review</a></li>
                     <li><a href="/product">Manage Inentory here</a></li>
                 </ul>
-            </nav>
+            </nav>            
         </div>
     );
 };

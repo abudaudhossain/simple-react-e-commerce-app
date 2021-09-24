@@ -3,17 +3,22 @@ import { useState } from 'react';
 import { addDb, getStoredCart } from '../../utilities/localdb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
+import Search from '../Search/Search';
 import "./Shop.css"
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [displayProduct, setDisplayProduct] = useState([]);
     const [cart, setCart] = useState([]);
 
 
     useEffect(() => {
         fetch('./products.JSON')
             .then(res => res.json())
-            .then(data => setProducts(data));
+            .then(data => {
+                setProducts(data);
+                setDisplayProduct(data);
+            });
     }, []);
 
     useEffect(() => {
@@ -23,7 +28,14 @@ const Shop = () => {
             let selectedProudts = []
 
             for (const key in seveCart) {
-                selectedProudts.push(products.find(product => key === product.key))
+
+                const selectedProduct = products.find(product => key === product.key);
+                if (selectedProduct) {
+                    // set quantity 
+                    selectedProduct.quantity = seveCart[key];
+                    selectedProudts.push(selectedProduct);
+                }
+
             }
             // set to cart
             setCart(selectedProudts)
@@ -33,24 +45,45 @@ const Shop = () => {
     }, [products])
 
     const handelAddtoCart = (product) => {
-        const newCart = [...cart, product]
-        setCart(newCart);
+        if (cart.indexOf(product) === -1) {
+            const newCart = [...cart, product]
+            setCart(newCart);
+        }else{
+            product.quantity += 1;
+            cart[cart.indexOf(product)] = product;
+            const newCart = [...cart]
+            setCart(newCart);
+        }
+
         // seve product in localStorage   
         addDb(product.key)
     }
     // console.log(cart);
+    // search headler 
+    const searchHeander = (event) =>{
+        const searchText = event.target.value;
+
+        const matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
+
+        setDisplayProduct(matchedProducts);
+        console.log(matchedProducts.length);
+    }
 
     return (
-        <div className="shop">
+        <>
+            <Search searchHendelar = {searchHeander}></Search>
+            <div className="shop">
             <div className="product-container">
                 {
-                    products.map(product => <Product key={product.key} product={product} handelAddtoCart={handelAddtoCart}></Product>)
+                    displayProduct.map(product => <Product key={product.key} product={product} handelAddtoCart={handelAddtoCart}></Product>)
                 }
             </div>
             <div className="product-cart">
                 <Cart cart={cart}></Cart>
             </div>
         </div>
+        </>
+        
     );
 };
 

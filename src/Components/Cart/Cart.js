@@ -4,18 +4,22 @@ import './Cart.css'
 const Cart = (props) => {
 
     let totalPrice = 0;
+    let totalQuantity = 0;
     for (const product of props.cart) {
-        totalPrice += product.price;
+        product.quantity = product.quantity ? product.quantity : 1;
+        totalPrice += product.price * product.quantity;
+        totalQuantity += product.quantity;
     }
-    const totalShipping = props.cart.reduce((previous, product) => previous + product.shipping, 0);
+  
+    const totalShipping = props.cart.reduce((previous, product) => previous + product.shipping * product.quantity, 0);
     const totalBeforTax = totalPrice + totalShipping;
     const totalTax = totalBeforTax * 0.1;
     const totalOrdeePrice = totalBeforTax + totalTax;
     return (
-        <div className = 'cart'>
+        <div className='cart'>
             <div className="title">
                 <h3>Order Summary</h3>
-                <h5>Items ordered: {props.cart.length}</h5>
+                <h5>Items ordered: {totalQuantity}</h5>
             </div>
             <div className="cart-body">
                 <p >Items: <span>${totalPrice.toFixed(2)}</span></p>
