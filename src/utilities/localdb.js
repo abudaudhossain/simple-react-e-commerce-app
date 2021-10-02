@@ -27,5 +27,23 @@ const getCart = (keyName) => {
     return localStorage.getItem(keyName);
 }
 
+const updateDb = cart => {
+    localStorage.setItem('product_cart', JSON.stringify(cart));
+  }
+const removeFromDb = id => {
+    const exists = getCart('product_cart');
+    if (!exists) {
+  
+    }
+    else {
+      const shopping_cart = JSON.parse(exists);
+      delete shopping_cart[id];
+      updateDb(shopping_cart);
+    }
+  }
 
-export { addDb, getStoredCart }
+  const clearCart = () =>{
+      localStorage.removeItem('product_cart');
+  }
+
+export { addDb, getStoredCart , removeFromDb, clearCart}

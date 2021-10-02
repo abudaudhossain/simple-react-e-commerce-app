@@ -13,7 +13,7 @@ nav ul{
     display: flex;
     margin: 0;
 }
-nav ul li a {
+nav ul li .navlink {
     text-decoration: none;
     line-height: 36px;
     color: #fff;
@@ -24,6 +24,6 @@ nav ul li a {
     font-weight: 400;
 }
 
-nav ul li a:hover{
-    background: lightgray;
+nav ul li .navlink:hover{
+    background: #9b9999;
 }

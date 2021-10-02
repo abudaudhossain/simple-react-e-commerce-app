@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addDb, getStoredCart } from '../../utilities/localdb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
@@ -48,7 +49,7 @@ const Shop = () => {
         if (cart.indexOf(product) === -1) {
             const newCart = [...cart, product]
             setCart(newCart);
-        }else{
+        } else {
             product.quantity += 1;
             cart[cart.indexOf(product)] = product;
             const newCart = [...cart]
@@ -60,7 +61,7 @@ const Shop = () => {
     }
     // console.log(cart);
     // search headler 
-    const searchHeander = (event) =>{
+    const searchHeander = (event) => {
         const searchText = event.target.value;
 
         const matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -71,19 +72,23 @@ const Shop = () => {
 
     return (
         <>
-            <Search searchHendelar = {searchHeander}></Search>
+            <Search searchHendelar={searchHeander}></Search>
             <div className="shop">
-            <div className="product-container">
-                {
-                    displayProduct.map(product => <Product key={product.key} product={product} handelAddtoCart={handelAddtoCart}></Product>)
-                }
+                <div className="product-container">
+                    {
+                        displayProduct.map(product => <Product key={product.key} product={product} handelAddtoCart={handelAddtoCart}></Product>)
+                    }
+                </div>
+                <div className="product-cart">
+                    <Cart cart={cart}>
+                       <Link to='/Order'>
+                       <button className="regular-btn">Review your order</button>
+                       </Link>
+                    </Cart>
+                </div>
             </div>
-            <div className="product-cart">
-                <Cart cart={cart}></Cart>
-            </div>
-        </div>
         </>
-        
+
     );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './Cart.css'
 
 const Cart = (props) => {
-
+    
     let totalPrice = 0;
     let totalQuantity = 0;
     for (const product of props.cart) {
@@ -27,7 +27,9 @@ const Cart = (props) => {
                 <p>Total Before Tax: <span>${totalBeforTax.toFixed(2)}</span></p>
                 <p>Esitmated Tax: <span>${totalTax.toFixed(2)}</span></p>
                 <h4>Order Total: <span>${totalOrdeePrice.toFixed(2)}</span></h4>
-                <button className="regular-btn">Review your order</button>
+                {
+                    props.children
+                }
             </div>
 
         </div>
