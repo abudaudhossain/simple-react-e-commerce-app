@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header/Header';
 import Inventory from './Components/Inventory/Inventory';
+import Login from './Components/Login/Login';
 import NotFount from './Components/NotFount/NotFount';
 import OrderReview from './Components/OrderReview/OrderReview';
 import PlaceOrder from './Components/PlaceOrder/PlaceOrder';
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/placeorder">
             <PlaceOrder></PlaceOrder>
+          </Route>
+          <Route path ="/login">
+            <Login></Login>
           </Route>
           <Route path='*'>
             <NotFount></NotFount>
