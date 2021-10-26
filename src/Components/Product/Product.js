@@ -23,7 +23,7 @@ const Product = (props) => {
                    emptySymbol ='far fa-star'
                    fullSymbol = 'fa fa-star'
                 /> <br/>
-                <button onClick={() => props.handelAddtoCart(props.product)} className="regular-btn"> <FontAwesomeIcon icon={faShoppingCart} />Add to Cart</button>
+                <button onClick={() => props.handelAddToCart(props.product)} className="regular-btn"> <FontAwesomeIcon icon={faShoppingCart} />Add to Cart</button>
             </div>
         </div>
     );

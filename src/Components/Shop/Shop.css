@@ -7,3 +7,15 @@
     border-right: 1px solid gainsboro;
     margin: 0 10px 0 20%;
 }
+
+.pagination{
+    margin: 20px 0;
+}
+.pagination button{
+    padding: 5px 20px;
+    margin: 0 10px;
+}
+.pagination .selected{
+    background: #3434f1;
+    color: white;
+}
